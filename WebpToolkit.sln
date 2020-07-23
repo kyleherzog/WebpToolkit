@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebpToolkit", "WebpToolkit\WebpToolkit.csproj", "{362FAF54-3E99-408B-829B-B43E1F110FA4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{49789EBB-165F-4DB7-8DE6-7BBCA252B206}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\.editorconfig = ..\..\.editorconfig
+		CHANGELOG.md = CHANGELOG.md
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "art", "art", "{4FAE00BF-970F-4078-A8CA-0BF0984C48FC}"
+	ProjectSection(SolutionItems) = preProject
+		art\generate-context.jpg = art\generate-context.jpg
+		art\img-to-picture.jpg = art\img-to-picture.jpg
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{362FAF54-3E99-408B-829B-B43E1F110FA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{362FAF54-3E99-408B-829B-B43E1F110FA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{362FAF54-3E99-408B-829B-B43E1F110FA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{362FAF54-3E99-408B-829B-B43E1F110FA4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4FAE00BF-970F-4078-A8CA-0BF0984C48FC} = {49789EBB-165F-4DB7-8DE6-7BBCA252B206}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2EC89CD9-FA91-416B-A996-8E91072DFB11}
+	EndGlobalSection
+EndGlobal

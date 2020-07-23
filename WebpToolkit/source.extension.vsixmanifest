@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+    <Metadata>
+        <Identity Id="WebpToolkit.3c6bbdde-9aa2-4b8a-b6e8-732cf3bfac87" Version="1.0" Language="en-US" Publisher="Kyle Herzog" />
+        <DisplayName>WebP Toolkit</DisplayName>
+        <Description xml:space="preserve">Enhances WebP support in Visual Studio, including the ability to generate of  WebP files from existing image files.</Description>
+        <License>Resources\LICENSE</License>
+        <Icon>Resources\WebP-Package.png</Icon>
+        <PreviewImage>Resources\generate-context.jpg</PreviewImage>
+        <Tags>WebP, optimization, image, generate, picture, img</Tags>
+    </Metadata>
+    <Installation>
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[16.0, 17.0)" />
+    </Installation>
+    <Dependencies>
+        <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+    </Dependencies>
+    <Prerequisites>
+        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[16.0,)" DisplayName="Visual Studio core editor" />
+        <Prerequisite Id="Microsoft.NetCore.ComponentGroup.Web.2.1" Version="[16.0,)" DisplayName="Web Development Tools plus .NET Core 2.1" />
+    </Prerequisites>
+    <Assets>
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+        <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" Path="|%CurrentProject%|" />
+    </Assets>
+</PackageManifest>
