@@ -153,6 +153,9 @@
     <Content Include="Assemblies\Microsoft.WebTools.Languages.Html.Editor.dll" />
     <Content Include="Assemblies\Microsoft.WebTools.Languages.Shared.dll" />
     <Content Include="Assemblies\Microsoft.WebTools.Languages.Shared.Editor.dll" />
+    <Content Include="Assemblies\SkiaSharp.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\WebP-Package.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
