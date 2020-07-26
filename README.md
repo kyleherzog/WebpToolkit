@@ -1,6 +1,10 @@
 # WebP Toolkit
 A Visual Studio Extension that enhances WebP support.
 
+[![Build Status](https://dev.azure.com/kyleherzog/WebpToolkit/_apis/build/status/WebpToolkit?branchName=master)](https://dev.azure.com/kyleherzog/WebpToolkit/_build/latest?definitionId=12&branchName=master)
+
+[Latest CI Build](https://www.vsixgallery.com/extension/WebpToolkit.3c6bbdde-9aa2-4b8a-b6e8-732cf3bfac87)
+
 ## Features
 - Generate WebP images from existing image files
 - Convert HTML `img` tags to WebP formatted `picture` tags.
