@@ -153,8 +153,17 @@
     <Content Include="Assemblies\Microsoft.WebTools.Languages.Html.Editor.dll" />
     <Content Include="Assemblies\Microsoft.WebTools.Languages.Shared.dll" />
     <Content Include="Assemblies\Microsoft.WebTools.Languages.Shared.Editor.dll" />
-    <Content Include="Assemblies\SkiaSharp.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <Content Include="Assemblies\SkiaSharp\arm64\libSkiaSharp.dll">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <VSIXSubPath>arm64</VSIXSubPath>
+    </Content>
+    <Content Include="Assemblies\SkiaSharp\x64\libSkiaSharp.dll">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <VSIXSubPath>x64</VSIXSubPath>
+    </Content>
+    <Content Include="Assemblies\SkiaSharp\x86\libSkiaSharp.dll">
+      <IncludeInVSIX>true</IncludeInVSIX>
+      <VSIXSubPath>x86</VSIXSubPath>
     </Content>
     <Content Include="Resources\WebP-Package.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
