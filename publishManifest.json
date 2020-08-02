@@ -17,7 +17,7 @@
       "targetPath": "art/generate-context.jpg"
     },
     {
-      "pathOnDisk": "\\art\\img-to-picture.jpg",
+      "pathOnDisk": "art\\img-to-picture.jpg",
       "targetPath": "art/img-to-picture.jpg"
     }
   ]
