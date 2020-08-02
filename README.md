@@ -6,7 +6,6 @@ A Visual Studio Extension that enhances WebP support.
 Download this extension from the [VS Marketplace](https://marketplace.visualstudio.com/items?itemName=kherzog.WebpToolkit) or get the latest [CI Build](https://www.vsixgallery.com/extension/WebpToolkit.3c6bbdde-9aa2-4b8a-b6e8-732cf3bfac87)
 
 ---
-
 ## Features
 - Generate WebP images from existing image files
 - Convert HTML `img` tags to WebP formatted `picture` tags.
