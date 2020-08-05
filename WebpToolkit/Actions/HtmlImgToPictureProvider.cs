@@ -37,12 +37,14 @@ namespace WebpToolkit.Actions
             }
 
             var src = element.GetAttribute("src");
-            if (!(src?.HasValue() ?? false))
+            if (string.IsNullOrEmpty(src?.Value))
             {
                 src = element.GetAttribute("data-src");
             }
 
-            return !src?.Value.ToUpperInvariant().Contains(".SVG") ?? false;
+            var srcValue = src?.Value?.ToUpperInvariant() ?? string.Empty;
+
+            return !string.IsNullOrEmpty(srcValue) && !srcValue.Contains(".SVG");
         }
     }
 }
