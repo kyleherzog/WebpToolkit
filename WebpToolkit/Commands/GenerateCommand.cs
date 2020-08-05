@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
+using WebpToolkit.Dialogs;
 
 namespace WebpToolkit.Commands
 {
@@ -89,19 +90,20 @@ namespace WebpToolkit.Commands
             commandService.AddCommand(menuCmd);
         }
 
-        private async System.Threading.Tasks.Task DisplayEndResultAsync(IList<ConversionResult> list, TimeSpan elapsed, int quality)
+        private async System.Threading.Tasks.Task DisplayEndResultAsync(IList<ConversionResult> list, TimeSpan elapsed, bool isLossy)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-            var savings = list.Where(r => r != null).Sum(r => r.Saving);
-            var originals = list.Where(r => r != null).Sum(r => r.OriginalFileSize);
-            var results = list.Where(r => r != null).Sum(r => r.ResultFileSize);
+            var savings = list.Where(r => r?.Processed ?? false).Sum(r => r.Saving);
+            var originals = list.Where(r => r?.Processed ?? false).Sum(r => r.OriginalFileSize);
+            var results = list.Where(r => r?.Processed ?? false).Sum(r => r.ResultFileSize);
 
             if (savings > 0)
             {
                 var successfulGenerations = list.Count(x => x != null);
                 var percent = Math.Round(100 - ((double)results / (double)originals * 100), 1, MidpointRounding.AwayFromZero);
                 var image = successfulGenerations == 1 ? "image" : "images";
-                var msg = $"{successfulGenerations} {image} generated using quality level of {quality} in {Math.Round(elapsed.TotalMilliseconds / 1000, 2)} seconds. Total saving of {savings} bytes / {percent}%";
+                var lossyLabel = isLossy ? "lossy" : "lossless";
+                var msg = $"{successfulGenerations} {image} generated using {lossyLabel} settings in {Math.Round(elapsed.TotalMilliseconds / 1000, 2)} seconds. Total saving of {savings:N0} bytes / {percent}%";
 
                 dte.StatusBar.Text = msg;
                 await Logger.LogToOutputWindowAsync(msg + Environment.NewLine).ConfigureAwait(false);
@@ -117,7 +119,7 @@ namespace WebpToolkit.Commands
                     if (result.Processed)
                     {
                         var p = Math.Round(100 - ((double)result.ResultFileSize / (double)result.OriginalFileSize * 100), 1, MidpointRounding.AwayFromZero);
-                        await Logger.LogToOutputWindowAsync($"  {originalName}{namesSeparator}{generatedName}\t saving {result.Saving} bytes / {p}%").ConfigureAwait(false);
+                        await Logger.LogToOutputWindowAsync($"  {originalName}{namesSeparator}{generatedName}\t saving {result.Saving:N0} bytes / {p}%").ConfigureAwait(false);
                     }
                     else
                     {
@@ -127,8 +129,9 @@ namespace WebpToolkit.Commands
             }
             else
             {
-                dte.StatusBar.Text = "All images were already generated.";
-                await Logger.LogToOutputWindowAsync("All images were already generated.").ConfigureAwait(false);
+                var message = "All images have already been generated.";
+                dte.StatusBar.Text = message;
+                await Logger.LogToOutputWindowAsync(message).ConfigureAwait(false);
             }
         }
 
@@ -147,7 +150,7 @@ namespace WebpToolkit.Commands
             }
         }
 
-        private async System.Threading.Tasks.Task GenerateImageAsync(bool lossy, EventArgs e)
+        private async System.Threading.Tasks.Task GenerateImageAsync(bool isLossy, EventArgs e)
         {
             isProcessing = true;
 
@@ -190,9 +193,7 @@ namespace WebpToolkit.Commands
             await System.Threading.Tasks.Task.Run(async () =>
             {
                 await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-                var quality = lossy
-                    ? WebpToolkitPackage.OptionsPage.BestCompression
-                    : WebpToolkitPackage.OptionsPage.BestQuality;
+
                 try
                 {
                     var text = count == 1 ? " image" : " images";
@@ -201,7 +202,14 @@ namespace WebpToolkit.Commands
                     for (var i = 0; i < files.Count(); i++)
                     {
                         var file = files.ElementAt(i);
-                        var result = await Converter.ConvertToWebpAsync(file, quality).ConfigureAwait(true);
+                        var converter = new Converter
+                        {
+                            LossyQualityLevel = WebpToolkitPackage.OptionsPage.LossyQuality,
+                            AllowOverwrite = WebpToolkitPackage.OptionsPage.IsOverwriteEnabled,
+                            AllowNearLossless = WebpToolkitPackage.OptionsPage.AllowNearLossless,
+                        };
+
+                        var result = converter.ConvertToWebp(file, isLossy);
                         await HandleResultAsync(result, i + 1).ConfigureAwait(true);
 
                         if (result.Saving > 0 && result.ResultFileSize > 0 && !string.IsNullOrEmpty(result.ResultFileName))
@@ -214,7 +222,7 @@ namespace WebpToolkit.Commands
                 {
                     dte.StatusBar.Progress(false);
                     stopwatch.Stop();
-                    await DisplayEndResultAsync(list, stopwatch.Elapsed, quality).ConfigureAwait(false);
+                    await DisplayEndResultAsync(list, stopwatch.Elapsed, isLossy).ConfigureAwait(false);
                     isProcessing = false;
                 }
             }).ConfigureAwait(false);

@@ -5,59 +5,32 @@ namespace WebpToolkit.Dialogs
 {
     public class OptionsPageGrid : DialogPage
     {
-        private int bestCompression = 50;
-        private int bestQuality = 80;
+        private int lossyQuality = 90;
 
-        [Category("Image Quality")]
-        [DisplayName("Best Compression")]
-        [Description("The quality level (1 - 100) to use for best compression file generations.")]
-        public int BestCompression
+        [Category("Lossless Images")]
+        [DisplayName("Allow Near-Lossless")]
+        [Description("Try to use some preprocessing to help compressibility but with minimal impact to the visual quality.")]
+        public bool AllowNearLossless { get; set; } = true;
+
+        [Category("Lossy Images")]
+        [DisplayName("Quality Level")]
+        [Description("The quality level (1 - 100) to use for lossy file generations.")]
+        public int LossyQuality
         {
             get
             {
-                return bestCompression;
+                return lossyQuality;
             }
 
             set
             {
                 if (value > 100)
                 {
-                    bestCompression = 100;
-                }
-                else if (value < 1)
-                {
-                    bestCompression = 1;
+                    lossyQuality = 100;
                 }
                 else
                 {
-                    bestCompression = value;
-                }
-            }
-        }
-
-        [Category("Image Quality")]
-        [DisplayName("Best Quality")]
-        [Description("The quality level (1 - 100) to use for best quality file generations.")]
-        public int BestQuality
-        {
-            get
-            {
-                return bestQuality;
-            }
-
-            set
-            {
-                if (value > 100)
-                {
-                    bestQuality = 100;
-                }
-                else if (value < 1)
-                {
-                    bestQuality = 1;
-                }
-                else
-                {
-                    bestQuality = value;
+                    lossyQuality = value < 1 ? 1 : value;
                 }
             }
         }

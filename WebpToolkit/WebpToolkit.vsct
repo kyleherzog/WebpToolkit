@@ -32,7 +32,7 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
         <CommandFlag>AllowParams</CommandFlag>
         <Strings>
-          <ButtonText>Best Quality</ButtonText>
+          <ButtonText>Lossless</ButtonText>
           <LocCanonicalName>.WebpToolkitGenerateLossless</LocCanonicalName>
         </Strings>
       </Button>
@@ -45,7 +45,7 @@
         <CommandFlag>DynamicVisibility</CommandFlag>
         <CommandFlag>AllowParams</CommandFlag>
         <Strings>
-          <ButtonText>Best Compression</ButtonText>
+          <ButtonText>Lossy</ButtonText>
           <LocCanonicalName>.WebpToolkitGenerateLossy</LocCanonicalName>
         </Strings>
       </Button>
