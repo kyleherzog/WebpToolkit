@@ -2,14 +2,26 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using SkiaSharp;
+using System.Text;
 
 namespace WebpToolkit
 {
-    public static class Converter
+    public class Converter
     {
-        private static readonly string[] supportedFileTypes = { ".png", ".jpg", ".jpeg", ".gif" };
+        private static readonly string[] supportedFileTypes = { ".png", ".jpg", ".jpeg", ".gif", ".tiff" };
+
+        private readonly string workingDirectory;
+
+        public Converter()
+        {
+            workingDirectory = Path.Combine(Path.GetDirectoryName(GetType().Assembly.Location), @"Resources\Tools\");
+        }
+
+        public int LossyQualityLevel { get; set; }
+
+        public bool AllowNearLossless { get; set; }
+
+        public bool AllowOverwrite { get; set; }
 
         public static bool IsFileSupported(string fileName)
         {
@@ -18,31 +30,113 @@ namespace WebpToolkit
             return supportedFileTypes.Any(s => s.Equals(ext, StringComparison.OrdinalIgnoreCase));
         }
 
-        public static async Task<ConversionResult> ConvertToWebpAsync(string fileName, int quality)
+        public ConversionResult ConvertToWebp(string fileName, bool isLossy)
         {
-            var stopwatch = Stopwatch.StartNew();
+            return ConvertImage(fileName, isLossy);
+        }
 
-            using var bmp = SKBitmap.Decode(fileName);
-            using var webp = bmp.Encode(SKEncodedImageFormat.Webp, quality).AsStream(true);
+        private static string GetGifArguments(string fileName, string targetName, bool isLossy)
+        {
+            var builder = new StringBuilder();
+            builder.Append("/c gif2webp ");
 
-            var webpFileName = $"{Path.Combine(Path.GetDirectoryName(fileName), Path.GetFileNameWithoutExtension(fileName))}.webp";
-            if (File.Exists(webpFileName))
+            builder.Append(fileName);
+
+            builder.Append(" -o ");
+            builder.Append(targetName);
+
+            builder.Append(" -min_size");
+
+            if (isLossy)
             {
-                if (WebpToolkitPackage.OptionsPage.IsOverwriteEnabled)
+                builder.Append(" -mixed");
+            }
+
+            return builder.ToString();
+        }
+
+        private string GetImageArguments(string fileName, string targetName, bool isLossy, bool allowNearLossless)
+        {
+            var builder = new StringBuilder();
+            builder.Append("/c cwebp ");
+
+            builder.Append(fileName);
+
+            builder.Append(" -o ");
+            builder.Append(targetName);
+
+            if (!isLossy)
+            {
+                if (allowNearLossless)
                 {
-                    File.Delete(webpFileName);
+                    builder.Append(" -near_lossless 50");
                 }
                 else
                 {
-                    return new ConversionResult(fileName, webpFileName, stopwatch.Elapsed, false);
+                    builder.Append(" -lossless -q 100");
+                }
+            }
+            else
+            {
+                builder.Append($" -q {LossyQualityLevel}");
+            }
+
+            return builder.ToString();
+        }
+
+        private ConversionResult ConvertImage(string fileName, bool isLossy)
+        {
+            var stopwatch = Stopwatch.StartNew();
+            var targetName = Path.ChangeExtension(fileName, ".webp");
+            if (!AllowOverwrite && File.Exists(targetName))
+            {
+                return new ConversionResult(fileName, targetName, stopwatch.Elapsed, false);
+            }
+
+            var fileExtension = Path.GetExtension(fileName);
+            var isGif = fileExtension.Equals(".gif", StringComparison.OrdinalIgnoreCase);
+            var arguments = isGif
+                ? GetGifArguments(fileName, targetName, isLossy)
+                : GetImageArguments(fileName, targetName, isLossy, false);
+
+            ConvertFile(arguments);
+
+            // see if we can get a smaller file size using near lossless conversion
+            if (!isGif && !isLossy && AllowNearLossless)
+            {
+                var altTargetName = Path.ChangeExtension(Path.GetTempFileName(), Path.GetExtension(fileName));
+                arguments = GetImageArguments(fileName, altTargetName, false, true);
+                ConvertFile(arguments);
+                var targetInfo = new FileInfo(targetName);
+                var altInfo = new FileInfo(altTargetName);
+                if (altInfo.Length < targetInfo.Length)
+                {
+                    targetInfo.Delete();
+                    altInfo.MoveTo(targetName);
+                }
+                else
+                {
+                    altInfo.Delete();
                 }
             }
 
-            using var fileStream = File.Create(webpFileName);
-            await webp.CopyToAsync(fileStream).ConfigureAwait(false);
-            await fileStream.FlushAsync().ConfigureAwait(false);
             stopwatch.Stop();
-            return new ConversionResult(fileName, webpFileName, stopwatch.Elapsed);
+            return new ConversionResult(fileName, targetName, stopwatch.Elapsed);
+        }
+
+        private void ConvertFile(string arguments)
+        {
+            var start = new ProcessStartInfo("cmd")
+            {
+                WindowStyle = ProcessWindowStyle.Hidden,
+                WorkingDirectory = workingDirectory,
+                Arguments = arguments,
+                UseShellExecute = false,
+                CreateNoWindow = true,
+            };
+
+            using var process = Process.Start(start);
+            process.WaitForExit();
         }
     }
 }

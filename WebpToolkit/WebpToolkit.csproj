@@ -126,9 +126,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="SkiaSharp">
-      <Version>2.80.1</Version>
-    </PackageReference>
     <PackageReference Include="SonarAnalyzer.CSharp">
       <Version>8.10.0.19839</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -148,22 +145,18 @@
     </VSCTCompile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assemblies\cwebp.exe" />
+    <Content Include="Assemblies\gif2webp.exe" />
     <Content Include="Assemblies\Microsoft.WebTools.Languages.Extensions.dll" />
     <Content Include="Assemblies\Microsoft.WebTools.Languages.Html.dll" />
     <Content Include="Assemblies\Microsoft.WebTools.Languages.Html.Editor.dll" />
     <Content Include="Assemblies\Microsoft.WebTools.Languages.Shared.dll" />
     <Content Include="Assemblies\Microsoft.WebTools.Languages.Shared.Editor.dll" />
-    <Content Include="Assemblies\SkiaSharp\arm64\libSkiaSharp.dll">
+    <Content Include="Resources\Tools\cwebp.exe">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <VSIXSubPath>arm64</VSIXSubPath>
     </Content>
-    <Content Include="Assemblies\SkiaSharp\x64\libSkiaSharp.dll">
+    <Content Include="Resources\Tools\gif2webp.exe">
       <IncludeInVSIX>true</IncludeInVSIX>
-      <VSIXSubPath>x64</VSIXSubPath>
-    </Content>
-    <Content Include="Assemblies\SkiaSharp\x86\libSkiaSharp.dll">
-      <IncludeInVSIX>true</IncludeInVSIX>
-      <VSIXSubPath>x86</VSIXSubPath>
     </Content>
     <Content Include="Resources\WebP-Package.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
