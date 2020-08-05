@@ -3,7 +3,15 @@ A Visual Studio Extension that enhances WebP support.
 
 [![Build Status](https://dev.azure.com/kyleherzog/WebpToolkit/_apis/build/status/WebpToolkit?branchName=master)](https://dev.azure.com/kyleherzog/WebpToolkit/_build/latest?definitionId=12&branchName=master)
 
-Download this extension from the [VS Marketplace](https://marketplace.visualstudio.com/items?itemName=kherzog.WebpToolkit) or get the latest [CI Build](https://www.vsixgallery.com/extension/WebpToolkit.3c6bbdde-9aa2-4b8a-b6e8-732cf3bfac87)
+
+Download this extension from the [VS Marketplace](https://marketplace.visualstudio.com/items?itemName=kherzog.WebpToolkit)
+ 
+![Visual Studio Marketplace Release Date](https://img.shields.io/visual-studio-marketplace/release-date/kherzog.WebpToolkit)
+![Visual Studio Marketplace Last Updated](https://img.shields.io/visual-studio-marketplace/last-updated/kherzog.WebpToolkit)
+![Visual Studio Marketplace Version](https://img.shields.io/visual-studio-marketplace/v/kherzog.WebpToolkit)
+
+Also available is the latest [CI Build](https://www.vsixgallery.com/extension/WebpToolkit.3c6bbdde-9aa2-4b8a-b6e8-732cf3bfac87)
+
 
 ---
 ## Features
