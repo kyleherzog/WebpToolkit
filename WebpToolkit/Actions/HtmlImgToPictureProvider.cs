@@ -42,7 +42,7 @@ namespace WebpToolkit.Actions
                 src = element.GetAttribute("data-src");
             }
 
-            return src != null;
+            return !src?.Value.ToUpperInvariant().Contains(".SVG") ?? false;
         }
     }
 }
