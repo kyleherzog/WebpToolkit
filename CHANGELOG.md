@@ -1,5 +1,9 @@
 # Changelog
 
+## 2.1
+- [x] Not showing light bulb if .svg file
+- [x] Only formatting picture element when converting img to picture element
+
 ## 2.0
 - [x] Support for animated .gif files
 - [x] Support for .tiff files

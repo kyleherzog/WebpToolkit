@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Threading;
-using System.Windows.Threading;
+using EnvDTE;
 using Microsoft.VisualStudio.Shell;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
@@ -49,20 +49,19 @@ namespace WebpToolkit.Actions
 
                     sourceBulder.Append(" type=\"image/webp\" />");
 
-                    var picture = $"<picture>\n{sourceBulder}\n{img}</picture>\n";
+                    var picture = $"<picture>\n{sourceBulder}\n{img}\n</picture>";
 
                     using var edit = TextBuffer.CreateEdit();
                     edit.Replace(new Span(Element.Start, Element.Length), picture);
                     edit.Apply();
 
                     await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();
-                    Dispatcher.CurrentDispatcher.BeginInvoke(
-                        new Action(() =>
-                        {
-                            WebpToolkitPackage.Dte.ExecuteCommand("Edit.FormatDocument");
-                        }),
-                        DispatcherPriority.ApplicationIdle,
-                        null).Task.FileAndForget("Edit.FormatDocument");
+                    var selection = WebpToolkitPackage.Dte.ActiveDocument.Selection as TextSelection;
+                    selection.EndOfLine();
+                    selection.LineUp(true, 3);
+                    selection.StartOfLine(vsStartOfLineOptions.vsStartOfLineOptionsFirstText, true);
+                    selection.SmartFormat();
+                    selection.StartOfLine(vsStartOfLineOptions.vsStartOfLineOptionsFirstText);
                 }
                 finally
                 {
