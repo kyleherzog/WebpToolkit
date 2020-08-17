@@ -40,10 +40,10 @@ namespace WebpToolkit
             var builder = new StringBuilder();
             builder.Append("/c gif2webp ");
 
-            builder.Append(fileName);
+            builder.Append($"\"{fileName}\"");
 
             builder.Append(" -o ");
-            builder.Append(targetName);
+            builder.Append($"\"{targetName}\"");
 
             builder.Append(" -min_size");
 
@@ -60,10 +60,10 @@ namespace WebpToolkit
             var builder = new StringBuilder();
             builder.Append("/c cwebp ");
 
-            builder.Append(fileName);
+            builder.Append($"\"{fileName}\"");
 
             builder.Append(" -o ");
-            builder.Append(targetName);
+            builder.Append($"\"{targetName}\"");
 
             if (!isLossy)
             {
