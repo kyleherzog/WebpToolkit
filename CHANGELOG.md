@@ -1,5 +1,8 @@
 # Changelog
 
+## 2.2
+- [x] Fix to allow generating .webp files when there are spaces in the file path.
+ 
 ## 2.1
 - [x] Not showing light bulb if .svg file
 - [x] Only formatting picture element when converting img to picture element
