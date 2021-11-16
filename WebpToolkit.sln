@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebpToolkit", "WebpToolkit\WebpToolkit.csproj", "{362FAF54-3E99-408B-829B-B43E1F110FA4}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{49789EBB-165F-4DB7-8DE6-7BBCA252B206}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\.editorconfig = ..\..\.editorconfig
@@ -20,7 +18,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "art", "art", "{4FAE00BF-970
 		art\img-to-picture.jpg = art\img-to-picture.jpg
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebpToolkit2019", "WebpToolkit2019\WebpToolkit2019.csproj", "{362FAF54-3E99-408B-829B-B43E1F110FA4}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WebpToolkit.Shared", "WebpToolkit.Shared\WebpToolkit.Shared.shproj", "{78127814-7733-4266-B553-02F11B5EF28E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{1D5992F5-BCB8-41D8-9047-AA1654629B74}"
+	ProjectSection(SolutionItems) = preProject
+		Tools\cwebp.exe = Tools\cwebp.exe
+		Tools\gif2webp.exe = Tools\gif2webp.exe
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		WebpToolkit.Shared\WebpToolkit.Shared.projitems*{362faf54-3e99-408b-829b-b43e1f110fa4}*SharedItemsImports = 4
+		WebpToolkit.Shared\WebpToolkit.Shared.projitems*{78127814-7733-4266-b553-02f11b5ef28e}*SharedItemsImports = 13
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -36,6 +48,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{4FAE00BF-970F-4078-A8CA-0BF0984C48FC} = {49789EBB-165F-4DB7-8DE6-7BBCA252B206}
+		{1D5992F5-BCB8-41D8-9047-AA1654629B74} = {49789EBB-165F-4DB7-8DE6-7BBCA252B206}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {2EC89CD9-FA91-416B-A996-8E91072DFB11}

@@ -104,7 +104,7 @@ namespace WebpToolkit
             // see if we can get a smaller file size using near lossless conversion
             if (!isGif && !isLossy && AllowNearLossless)
             {
-                var altTargetName = Path.ChangeExtension(Path.GetTempFileName(), Path.GetExtension(fileName));
+                var altTargetName = Path.ChangeExtension(Path.GetRandomFileName(), Path.GetExtension(fileName));
                 arguments = GetImageArguments(fileName, altTargetName, false, true);
                 ConvertFile(arguments);
                 var targetInfo = new FileInfo(targetName);
