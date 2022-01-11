@@ -4,12 +4,10 @@ using System.ComponentModel.Design;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
 using EnvDTE;
 using EnvDTE80;
 using Microsoft.VisualStudio.Shell;
-using WebpToolkit.Dialogs;
 
 namespace WebpToolkit.Commands
 {
@@ -73,12 +71,18 @@ namespace WebpToolkit.Commands
             }
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "VSSDK006:Check services exist", Justification = "False positive.")]
         public static async System.Threading.Tasks.Task<GenerateCommand> InitializeAsync(IAsyncServiceProvider package)
         {
             var menuCommandService = await package.GetServiceAsync(typeof(IMenuCommandService)).ConfigureAwait(true) as IMenuCommandService;
             var dte2 = await package.GetServiceAsync(typeof(DTE)).ConfigureAwait(true) as DTE2;
 
-            return new GenerateCommand(dte2, menuCommandService);
+            if (menuCommandService is not null && dte2 is not null)
+            {
+                return new GenerateCommand(dte2, menuCommandService);
+            }
+
+            return null;
         }
 
         private void AddCommand(int commandId, EventHandler invokeHandler, EventHandler beforeQueryStatus)

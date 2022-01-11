@@ -14,6 +14,7 @@ namespace WebpToolkit
         private static IVsOutputWindow output;
         private static IVsOutputWindowPane pane;
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "VSSDK006:Check services exist", Justification = "False positive.")]
         public static async Task InitializeAsync(Microsoft.VisualStudio.Shell.IAsyncServiceProvider provider, string name)
         {
             await ThreadHelper.JoinableTaskFactory.SwitchToMainThreadAsync();

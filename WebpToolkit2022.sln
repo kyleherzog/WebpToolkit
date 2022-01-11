@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30225.117
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32014.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{49789EBB-165F-4DB7-8DE6-7BBCA252B206}"
 	ProjectSection(SolutionItems) = preProject
@@ -18,8 +18,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "art", "art", "{4FAE00BF-970
 		art\img-to-picture.jpg = art\img-to-picture.jpg
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebpToolkit2019", "WebpToolkit2019\WebpToolkit2019.csproj", "{362FAF54-3E99-408B-829B-B43E1F110FA4}"
-EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "WebpToolkit.Shared", "WebpToolkit.Shared\WebpToolkit.Shared.shproj", "{78127814-7733-4266-B553-02F11B5EF28E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{1D5992F5-BCB8-41D8-9047-AA1654629B74}"
@@ -30,9 +28,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{1D5992F5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebpToolkit2022", "WebpToolkit2022\WebpToolkit2022.csproj", "{B9A68DF5-757B-4136-9480-034B88E8E4BA}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebpToolkit.Core", "WebpToolkit.Core\WebpToolkit.Core.csproj", "{4F8AFE3C-4022-4F8B-ADF8-FA7B52F13907}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebpToolkit.Core.UnitTests", "WebpToolkit.Core.UnitTests\WebpToolkit.Core.UnitTests.csproj", "{89D6A0BB-4876-4EBE-94BC-0E8C439020A8}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		WebpToolkit.Shared\WebpToolkit.Shared.projitems*{362faf54-3e99-408b-829b-b43e1f110fa4}*SharedItemsImports = 4
 		WebpToolkit.Shared\WebpToolkit.Shared.projitems*{78127814-7733-4266-b553-02f11b5ef28e}*SharedItemsImports = 13
 		WebpToolkit.Shared\WebpToolkit.Shared.projitems*{b9a68df5-757b-4136-9480-034b88e8e4ba}*SharedItemsImports = 4
 	EndGlobalSection
@@ -41,14 +42,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{362FAF54-3E99-408B-829B-B43E1F110FA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{362FAF54-3E99-408B-829B-B43E1F110FA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{362FAF54-3E99-408B-829B-B43E1F110FA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{362FAF54-3E99-408B-829B-B43E1F110FA4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B9A68DF5-757B-4136-9480-034B88E8E4BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B9A68DF5-757B-4136-9480-034B88E8E4BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9A68DF5-757B-4136-9480-034B88E8E4BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9A68DF5-757B-4136-9480-034B88E8E4BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F8AFE3C-4022-4F8B-ADF8-FA7B52F13907}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F8AFE3C-4022-4F8B-ADF8-FA7B52F13907}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F8AFE3C-4022-4F8B-ADF8-FA7B52F13907}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F8AFE3C-4022-4F8B-ADF8-FA7B52F13907}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89D6A0BB-4876-4EBE-94BC-0E8C439020A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89D6A0BB-4876-4EBE-94BC-0E8C439020A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89D6A0BB-4876-4EBE-94BC-0E8C439020A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89D6A0BB-4876-4EBE-94BC-0E8C439020A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

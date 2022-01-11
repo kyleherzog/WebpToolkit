@@ -29,11 +29,11 @@ namespace WebpToolkit
 
         public long OriginalFileSize { get; set; }
 
-        public string OriginalFileName { get; set; }
+        public string? OriginalFileName { get; set; }
 
         public long ResultFileSize { get; set; }
 
-        public string ResultFileName { get; set; }
+        public string? ResultFileName { get; set; }
 
         public bool Processed { get; set; }
 

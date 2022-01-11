@@ -8,7 +8,7 @@ namespace WebpToolkit
 {
     public class Converter
     {
-        private static readonly string[] supportedFileTypes = { ".png", ".jpg", ".jpeg", ".gif", ".tiff" };
+        public static readonly string[] SupportedFileTypes = { ".png", ".jpg", ".jpeg", ".gif", ".tiff" };
 
         private readonly string workingDirectory;
 
@@ -27,7 +27,7 @@ namespace WebpToolkit
         {
             var ext = Path.GetExtension(fileName);
 
-            return supportedFileTypes.Any(s => s.Equals(ext, StringComparison.OrdinalIgnoreCase));
+            return SupportedFileTypes.Any(s => s.Equals(ext, StringComparison.OrdinalIgnoreCase));
         }
 
         public ConversionResult ConvertToWebp(string fileName, bool isLossy)
