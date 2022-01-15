@@ -30,7 +30,7 @@ public class HtmlExplorer
             {
                 var docNode = Document.DocumentNode;
                 var descendants = docNode.DescendantsAndSelf();
-                var endNodes = descendants.Where(x => x.EndNode != x).Select(x => x.EndNode);
+                var endNodes = descendants.Where(x => x.EndNode != x && x.EndNode is not null).Select(x => x.EndNode);
 
                 var nodes = new List<HtmlNode>();
                 nodes.AddRange(descendants);

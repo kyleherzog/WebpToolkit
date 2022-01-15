@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -23,7 +25,11 @@ internal class ImgToPictureSuggestedAction : ISuggestedAction
     {
         Span = span;
         Snapshot = span.TextBuffer.CurrentSnapshot;
+
+        PictureElement = String.Empty;
+        PictureElementPreview = String.Empty;
         LoadPictureElement(node);
+
         Node = node;
     }
 
@@ -39,11 +45,11 @@ internal class ImgToPictureSuggestedAction : ISuggestedAction
 
     public bool HasPreview => true;
 
-    public string IconAutomationText => null;
+    public string? IconAutomationText => null;
 
     public ImageMoniker IconMoniker => default;
 
-    public string InputGestureText => null;
+    public string? InputGestureText => null;
 
     public HtmlNode Node { get; }
 
@@ -62,9 +68,9 @@ internal class ImgToPictureSuggestedAction : ISuggestedAction
         GC.SuppressFinalize(this);
     }
 
-    public Task<IEnumerable<SuggestedActionSet>> GetActionSetsAsync(CancellationToken cancellationToken)
+    public Task<IEnumerable<SuggestedActionSet>?> GetActionSetsAsync(CancellationToken cancellationToken)
     {
-        return Task.FromResult<IEnumerable<SuggestedActionSet>>(null);
+        return Task.FromResult<IEnumerable<SuggestedActionSet>?>(null);
     }
 
     public Task<object> GetPreviewAsync(CancellationToken cancellationToken)

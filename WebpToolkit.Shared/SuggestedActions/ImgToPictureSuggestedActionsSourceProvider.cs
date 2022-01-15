@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.Composition;
+﻿#nullable enable
+
+using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Language.Intellisense;
 using Microsoft.VisualStudio.Text;
 using Microsoft.VisualStudio.Text.Editor;
@@ -14,9 +16,9 @@ namespace WebpToolkit;
 internal class ImgToPictureSuggestedActionsSourceProvider : ISuggestedActionsSourceProvider
 {
     [Import(typeof(ITextStructureNavigatorSelectorService))]
-    internal ITextStructureNavigatorSelectorService NavigatorService { get; set; }
+    internal ITextStructureNavigatorSelectorService? NavigatorService { get; set; }
 
-    public ISuggestedActionsSource CreateSuggestedActionsSource(ITextView textView, ITextBuffer textBuffer)
+    public ISuggestedActionsSource? CreateSuggestedActionsSource(ITextView textView, ITextBuffer textBuffer)
     {
         if (textBuffer == null || textView == null)
         {

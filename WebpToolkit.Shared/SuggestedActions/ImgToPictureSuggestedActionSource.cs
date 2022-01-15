@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -28,7 +30,9 @@ internal class ImgToPictureSuggestedActionSource : ISuggestedActionsSource
         Dispose(disposing: false);
     }
 
-    public event EventHandler<EventArgs> SuggestedActionsChanged;
+#pragma warning disable CS0067 //Justification: required by interface
+    public event EventHandler<EventArgs>? SuggestedActionsChanged;
+#pragma warning restore CS0067
 
     public void Dispose()
     {
@@ -45,6 +49,7 @@ internal class ImgToPictureSuggestedActionSource : ISuggestedActionsSource
         {
             var trackingSpan = currentView.TextBuffer.CurrentSnapshot.CreateTrackingSpan(explorer.GetPositionOf(node) - 1, explorer.GetNodeLength(node), SpanTrackingMode.EdgeInclusive);
             var pictureAction = new ImgToPictureSuggestedAction(trackingSpan, node);
+
             return new SuggestedActionSet[] { new SuggestedActionSet(PredefinedSuggestedActionCategoryNames.Refactoring, new ISuggestedAction[] { pictureAction }) };
         }
 
@@ -87,7 +92,7 @@ internal class ImgToPictureSuggestedActionSource : ISuggestedActionsSource
         }
     }
 
-    private HtmlNode GetConvertableImgNode(HtmlExplorer explorer)
+    private HtmlNode? GetConvertableImgNode(HtmlExplorer explorer)
     {
         var caret = currentView.Caret;
 
@@ -119,7 +124,7 @@ internal class ImgToPictureSuggestedActionSource : ISuggestedActionsSource
 
         if (src.Contains("?"))
         {
-            src = src.Substring(0, src.IndexOf("?"));
+            src = src.Substring(0, src.IndexOf("?", StringComparison.OrdinalIgnoreCase));
         }
 
         var ext = Path.GetExtension(src);

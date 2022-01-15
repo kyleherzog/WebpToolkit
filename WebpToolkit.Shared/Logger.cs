@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Diagnostics;
 using Microsoft;
 using Microsoft.VisualStudio.Shell;
@@ -10,9 +12,9 @@ namespace WebpToolkit
 {
     internal static class Logger
     {
-        private static string name;
-        private static IVsOutputWindow output;
-        private static IVsOutputWindowPane pane;
+        private static string? name;
+        private static IVsOutputWindow? output;
+        private static IVsOutputWindowPane? pane;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Reliability", "VSSDK006:Check services exist", Justification = "False positive.")]
         public static async Task InitializeAsync(Microsoft.VisualStudio.Shell.IAsyncServiceProvider provider, string name)
@@ -32,7 +34,7 @@ namespace WebpToolkit
 
                 if (EnsurePane())
                 {
-                    pane.OutputStringThreadSafe(message + Environment.NewLine);
+                    pane?.OutputStringThreadSafe(message + Environment.NewLine);
                 }
             }
             catch (Exception ex)
@@ -47,8 +49,8 @@ namespace WebpToolkit
             if (pane == null)
             {
                 var guid = Guid.NewGuid();
-                output.CreatePane(ref guid, name, 1, 1);
-                output.GetPane(ref guid, out pane);
+                output?.CreatePane(ref guid, name, 1, 1);
+                output?.GetPane(ref guid, out pane);
             }
 
             return pane != null;

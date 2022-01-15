@@ -5,7 +5,9 @@ namespace WebpToolkit.Dialogs
 {
     public class OptionsPageGrid : DialogPage
     {
-        private int lossyQuality = 90;
+        public const int DefaultLossyQuality = 90;
+
+        private int lossyQuality = DefaultLossyQuality;
 
         [Category("Lossless Images")]
         [DisplayName("Allow Near-Lossless")]

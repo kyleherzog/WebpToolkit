@@ -1,4 +1,6 @@
-﻿using System;
+﻿#nullable enable
+
+using System;
 using System.Runtime.InteropServices;
 using System.Threading;
 using EnvDTE;
@@ -37,9 +39,9 @@ namespace WebpToolkit
     [ProvideOptionPage(typeof(OptionsPageGrid), "WebP Toolkit", "File Generating", 0, 0, true)]
     public sealed class WebpToolkitPackage : AsyncPackage
     {
-        public static OptionsPageGrid OptionsPage { get; set; }
+        public static OptionsPageGrid? OptionsPage { get; set; }
 
-        public static DTE2 Dte { get; } = Package.GetGlobalService(typeof(DTE)) as DTE2;
+        public static DTE2? Dte { get; } = Package.GetGlobalService(typeof(DTE)) as DTE2;
 
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
