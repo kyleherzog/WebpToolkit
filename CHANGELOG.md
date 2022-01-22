@@ -1,5 +1,8 @@
 # Changelog
 
+## 3.0
+- [x] Added Visual Studio 2022 support
+
 ## 2.2
 - [x] Fix to allow generating .webp files when there are spaces in the file path.
  

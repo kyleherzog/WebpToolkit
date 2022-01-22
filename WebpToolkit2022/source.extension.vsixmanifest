@@ -1,29 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
-    <Metadata>
-        <Identity Id="WebpToolkit2022.3c6bbdde-9aa2-4b8a-b6e8-732cf3bfac88" Version="2.3" Language="en-US" Publisher="Kyle Herzog" />
-        <DisplayName>WebP Toolkit 2022</DisplayName>
-        <Description xml:space="preserve">Enhances WebP support in Visual Studio, including the ability to generate of  WebP files from existing image files.</Description>
-        <MoreInfo>https://github.com/kyleherzog/WebpToolkit</MoreInfo>
-        <License>Resources\LICENSE</License>
-        <Icon>Resources\WebP-Package.png</Icon>
-        <PreviewImage>Resources\generate-context.jpg</PreviewImage>
-        <Tags>WebP, optimization, image, generate, picture, img</Tags>
-    </Metadata>
-    <Installation>
-        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
-            <ProductArchitecture>amd64</ProductArchitecture>
-        </InstallationTarget>
-    </Installation>
-    <Dependencies>
-        <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
-    </Dependencies>
-    <Prerequisites>
-        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0,)" DisplayName="Visual Studio core editor" />
-        <Prerequisite Id="Microsoft.NetCore.Component.Web" Version="[17.0,)" DisplayName="Web development tools for .NET" />
-    </Prerequisites>
-    <Assets>
-        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
-        <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" Path="|%CurrentProject%|" />
-    </Assets>
+  <Metadata>
+    <Identity Id="WebpToolkit2022.3c6bbdde-9aa2-4b8a-b6e8-732cf3bfac88" Version="3.0" Language="en-US" Publisher="Kyle Herzog" />
+    <DisplayName>WebP Toolkit 2022</DisplayName>
+    <Description xml:space="preserve">Enhances WebP support in Visual Studio, including the ability to generate of  WebP files from existing image files.</Description>
+    <MoreInfo>https://github.com/kyleherzog/WebpToolkit</MoreInfo>
+    <License>Resources\LICENSE</License>
+    <Icon>Resources\WebP-Package.png</Icon>
+    <PreviewImage>Resources\generate-context.jpg</PreviewImage>
+    <Tags>WebP, optimization, image, generate, picture, img</Tags>
+  </Metadata>
+  <Installation>
+    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[17.0, 18.0)">
+      <ProductArchitecture>amd64</ProductArchitecture>
+    </InstallationTarget>
+  </Installation>
+  <Dependencies>
+    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+  </Dependencies>
+  <Prerequisites>
+    <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[17.0,)" DisplayName="Visual Studio core editor" />
+    <Prerequisite Id="Microsoft.NetCore.Component.Web" Version="[17.0,)" DisplayName="Web development tools for .NET" />
+  </Prerequisites>
+  <Assets>
+    <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
+    <Asset Type="Microsoft.VisualStudio.MefComponent" d:Source="Project" Path="|%CurrentProject%|" />
+  </Assets>
 </PackageManifest>
